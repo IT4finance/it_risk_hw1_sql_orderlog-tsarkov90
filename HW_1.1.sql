@@ -11,8 +11,8 @@ CREATE TABLE public.stock_orders
     buysell char(1),
     time bigint, -- посчитал что если еще будет и дата, то просто int не хватит
     order_no bigint,
-    action smallint, -- 0/1/2
-    price numeric(15, 6),
+    action smallint,
+    price numeric(15, 6), -- 6 знаков после запятой точно, перед запятой было 6, но я сделал чтобы было 9
     volume bigint,
     trade_no bigint,
     trade_price numeric(15, 6)
