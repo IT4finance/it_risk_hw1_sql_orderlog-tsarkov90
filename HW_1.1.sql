@@ -12,10 +12,10 @@ CREATE TABLE public.stock_orders
     time bigint, -- посчитал что если еще будет и дата, то просто int не хватит
     order_no bigint,
     action smallint, -- 0/1/2
-    price numeric(12, 6),
+    price numeric(15, 6),
     volume bigint,
     trade_no bigint,
-    trade_price numeric(12, 6)
+    trade_price numeric(15, 6)
 )
 WITH (
     OIDS=FALSE
