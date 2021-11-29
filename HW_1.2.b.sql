@@ -1,12 +1,15 @@
 -- GROUP BY, HAVING, преобразования поля с типом DATE/TIME.
--- Средний объем сделки на компанию по часам
--- с ограничением, что суммарный объем сделок больше 1 000 000
+-- Средний объем сделок на ценную бумагу по часам
+-- с ограничением, что в этот час по бумаге совершили больше чем 100 сделок
 
 SELECT
-    (order_time / 10000000) as order_hour,
+    extract(HOUR from order_time) as order_hour,
     security_code,
-    sum(volume) / count(trade_no) as avg_volume
+    avg(volume) * avg(trade_price)
 FROM stock_orders
 WHERE action = 2 and buysell = 'B'
 GROUP BY order_hour, security_code
-HAVING sum(volume) > 1000000;
+having count(DISTINCT trade_no) > 100
+
+
+
