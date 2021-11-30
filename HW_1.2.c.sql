@@ -1,5 +1,5 @@
 -- WITH, JOIN.
--- Определение типа сделки (покупка или продажа)
+-- Сравнение заявочных цен
 with buys AS (
     SELECT
         security_code,
@@ -33,10 +33,7 @@ SELECT
     sells.price sell_price,
     buys.trade_price,
 
-    CASE
-        WHEN buys.order_no > sells.order_no THEN 'B'
-        ELSE 'S'
-    END trade_buysell
+    abs(sells.price - buys.price) price_diff
 
 FROM buys JOIN sells ON
     buys.trade_no = sells.trade_no
