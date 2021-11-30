@@ -5,7 +5,7 @@
 SELECT
     extract(HOUR from order_time) as order_hour,
     security_code,
-    avg(volume) * avg(trade_price)
+    avg(volume)
 FROM stock_orders
 WHERE action = 2 and buysell = 'B'
 GROUP BY order_hour, security_code
